@@ -1,0 +1,2279 @@
+// picture - unsplach.com video - coverr.co
+
+// if we have url of the web page, then we can check the responsiveness of web page in sizzy website.
+
+// caniuse.com -  To check whether latest css property is supported in old browsers or not
+
+// <meta name="viewport" content="width=device-width, initial-scale=1">
+
+// meta line is very very important for responsive web design - it is in index.html
+
+$color-white: #fff;
+
+$color-black: #000;
+
+$color-gray: #777;
+
+$color-gray-2: #999;
+
+$color-gray-3: #333;
+
+$color-gray-light-1: #eee;
+
+$color-gray-light: #f7f7f7;
+
+ 
+
+$color-primary: #55c59a;
+
+$color-primary-light: #7ed56f;
+
+$color-primary-dark: #28b485;
+
+ 
+
+$color-orange-light: #ffb900;
+
+$color-orange-dark: #ff7730;
+
+ 
+
+$color-blue-light: #4da6ff;
+
+$color-blue-dark:#0073e6;
+
+ 
+
+$horizontal-margin: 6rem;
+
+$vertical-margin: 4rem;
+
+ 
+
+// Responsive Design
+
+// phone
+
+// tablet-portrait
+
+// tablet-landscape
+
+// big-desktop
+
+ 
+
+@mixin respond($device) {
+
+    @if $device == tablet-landscape {
+
+       @media only screen and (max-width: 75em) {@content;} //1200px
+
+    }
+
+    @if $device == tablet-portrait {
+
+        @media only screen and (max-width: 56.25em) {@content;} //900px
+
+     }
+
+     @if $device == phone {
+
+        @media only screen and (max-width: 37.5em) {@content;} //600px
+
+     }
+
+     @if $device == big-desktop {
+
+        @media only screen and (min-width: 112.5em) {@content;} //1800+
+
+     }
+
+}
+
+ 
+
+.header {
+
+    background-image: linear-gradient(to right bottom,
+
+                        rgba($color-primary-light, 0.8),
+
+                        rgba($color-primary-dark, 0.8)),
+
+                        url(../assets/backgroundImage.jpg);
+
+    height: 95vh;
+
+    background-size: cover;
+
+    background-position: center;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    position: relative;
+
+ 
+
+    // 192dpi = 2x
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em) //in safari min-resolution is not supported
+
+    {
+
+        background-image: linear-gradient(to right bottom,
+
+        rgba($color-primary-light, 0.8),
+
+        rgba($color-primary-dark, 0.8)),
+
+        url(../assets/hero.jpg);
+
+        background-size: cover;
+
+        background-position: center;
+
+    }
+
+ 
+
+    @include respond(tablet-portrait) { //8px
+
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+
+    }
+
+ 
+
+    &__image-box {
+
+        position: absolute;
+
+        top:4rem;
+
+        left: 4rem;
+
+    }
+
+ 
+
+    &__logo {
+
+        height: 3.5rem;
+
+     }
+
+ 
+
+     &__text-box {
+
+        position:absolute;
+
+        top:50%;
+
+        left:50%;
+
+        transform: translate(-50%, -50%);
+
+        text-align: center;
+
+    }
+
+ }
+
+ 
+
+ .heading-primary {
+
+    text-transform: uppercase;
+
+    -webkit-backface-visibility: hidden;
+
+    backface-visibility: hidden;
+
+ 
+
+    &--main {
+
+        font-size: 6rem;
+
+        color: $color-white;
+
+        letter-spacing: 3.5rem;
+
+        font-weight: 400;
+
+        animation-name: movesInLeft;
+
+        animation-duration: 1s;
+
+        animation-timing-function: ease-out;
+
+ 
+
+        @include respond(phone) {
+
+            letter-spacing: 1rem;
+
+            font-size: 5rem;
+
+        }
+
+    }
+
+ 
+
+    &--sub {
+
+        font-size: 2rem;
+
+        color: $color-white;
+
+        letter-spacing: 1.7rem;
+
+        font-weight: 700;
+
+        animation: moveInRight 1s ease-out;
+
+    }
+
+ }
+
+ 
+
+ .btn {
+
+    &,
+
+    &:link,
+
+    &:visited {
+
+        text-transform: uppercase;
+
+        padding: 1rem 3rem;
+
+        text-decoration: none;
+
+        margin-top: 5rem;
+
+        display: inline-block;
+
+        border-radius: 3rem;
+
+        transition: all .2s;
+
+        position: relative;
+
+        font-size: 1.6rem;
+
+        //For button tag only
+
+        border: none;
+
+        cursor: pointer;
+
+     }
+
+ 
+
+    &::after {
+
+        content: "";
+
+        display:inline-block;
+
+        width:100%;
+
+        height: 100%;
+
+        border-radius: 10rem;
+
+        position:absolute;
+
+        top:0;
+
+        left:0;
+
+        z-index: -1;
+
+        transition: all .4s;
+
+    }
+
+ 
+
+    &:hover {
+
+        transform: translateY(-.3rem);
+
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.2);
+
+ 
+
+        &::after {
+
+            transform: scaleX(1.5) scaleY(1.7);
+
+            opacity:0;
+
+        }
+
+    }
+
+ 
+
+    &:active {
+
+        transform: translateY(-.1rem);
+
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+
+    }
+
+ 
+
+    &--white {
+
+        background-color: $color-white;
+
+        color: $color-gray;
+
+ 
+
+        &::after {
+
+            background-color: $color-white;
+
+        }
+
+    }
+
+ 
+
+    &--green {
+
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+
+        color: $color-white;
+
+        &::after {
+
+            background-color: $color-primary;
+
+        }
+
+ 
+
+    }
+
+ 
+
+    &--animated {
+
+        animation: moveInBottom .5s .75s;
+
+        animation-fill-mode: backwards;
+
+    }
+
+ 
+
+ }
+
+ 
+
+ .section-about {
+
+     background-color: $color-gray-light;
+
+     padding: 25rem 0;
+
+     margin-top: -20vh;
+
+ }
+
+ 
+
+ .heading-secondary {
+
+     font-size: 3rem;
+
+     font-weight: 700;
+
+     letter-spacing: .2rem;
+
+     background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+
+     background-clip: text;
+
+     color: transparent;
+
+     text-transform: uppercase;
+
+     transition: all .2s;
+
+     margin-bottom: $vertical-margin;
+
+ 
+
+     &:hover {
+
+        // The skewX() method skews an element along the X-axis by the given angle.
+
+        transform: skewX(15deg) skewY(2deg) scale(1.1);
+
+        text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+
+     }
+
+     @include respond(tablet-portrait) {
+
+        font-size: 3rem;
+
+    }
+
+    @include respond(phone) {
+
+        font-size: 2.5rem;
+
+    }
+
+ }
+
+ 
+
+ @mixin clearfix {
+
+    &::after {
+
+        content: '';
+
+        display: table;
+
+        clear: both;
+
+    }
+
+}
+
+ 
+
+ .row {
+
+   max-width: 100rem;
+
+   margin: 0 auto;
+
+   @include clearfix;
+
+   @include respond(tablet-portrait) {
+
+        margin-bottom: 6rem;
+
+        max-width: 50rem;
+
+    }
+
+}
+
+ 
+
+[class^="col-"] {
+
+    float: left;
+
+    &:not(:last-child) {
+
+        margin-right: $horizontal-margin;
+
+        @include respond(tablet-portrait) {
+
+            margin-right: 0;
+
+        }
+
+    }
+
+    @include respond(tablet-portrait) {
+
+        width: 100% !important;
+
+        margin-bottom: 6rem;
+
+ 
+
+    }
+
+}
+
+ 
+
+ .col-1-of-2 {
+
+    width: calc((100% - #{$horizontal-margin}) / 2);
+
+ }
+
+ 
+
+ .col-1-of-4 {
+
+    width: calc((100% - 3*#{$horizontal-margin}) / 4);
+
+}
+
+ 
+
+ .col-1-of-3 {
+
+    width: calc((100% - 2*#{$horizontal-margin}) / 3);
+
+}
+
+ 
+
+ .heaading-tertiary {
+
+     text-transform: uppercase;
+
+     font-size: 1.5rem;
+
+     font-weight: 700;
+
+     margin-bottom: 1.5rem;
+
+ }
+
+ 
+
+ .paragraph-text {
+
+    font-size: 1.4rem;
+
+    text-align: justify;
+
+    margin-bottom: 1.7rem;
+
+}
+
+ 
+
+.btn-text {
+
+    &:link, &:visited {
+
+        text-decoration: none;
+
+        color: $color-primary;
+
+        font-size: 1.6rem;
+
+        font-weight: 700;
+
+        border-bottom: 1px solid $color-primary;
+
+        padding: 0.5rem;
+
+        transition: all .2s;
+
+        display: inline-block;
+
+        // It is important to give inline block when u are animating button
+
+    }
+
+ 
+
+    &:hover {
+
+        background-color: $color-primary-dark;
+
+        color: white;
+
+        transform: translateY(-.3rem);
+
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.2);
+
+    }
+
+ 
+
+    &:active {
+
+        box-shadow: 0 0.5rem 2rem rgba($color-black, 0.2);
+
+    }
+
+}
+
+ 
+
+.image-holder {
+
+    position: relative;
+
+    margin-top: 3rem;
+
+    &__photo {
+
+        position: absolute;
+
+        width: 50%;
+
+        box-shadow: 0 1rem 2rem rgba($color-black,0.3);
+
+        z-index: 10;
+
+        transition: all .2s;
+
+        outline-offset: 2rem;
+
+ 
+
+        @include respond(tablet-portrait) {
+
+            width: 33.33333333%;
+
+            position: relative;
+
+            float: left;
+
+        }
+
+ 
+
+        &--p1 {
+
+           top:-3rem;
+
+           left:0;
+
+           @include respond(tablet-portrait) {
+
+               top: -1rem;
+
+               transform: scale(1.5);
+
+           }
+
+        }
+
+        &--p2 {
+
+            top:2rem;
+
+            right:0;
+
+            @include respond(tablet-portrait) {
+
+               top: 0;
+
+               transform: scale(1.5);
+
+                z-index: 100;
+
+ 
+
+            }
+
+        }
+
+        &--p3 {
+
+            top:10rem;
+
+            left:20%;
+
+            @include respond(tablet-portrait) {
+
+               top: -2rem;
+
+                left: 0;
+
+               transform: scale(1.5);
+
+ 
+
+            }
+
+        }
+
+ 
+
+        &:hover {
+
+            z-index: 1000;
+
+            transform: scale(1.1);
+
+            box-shadow: 0 1rem 2rem rgba($color-black,0.5);
+
+            outline: 1rem solid $color-primary;
+
+            @include respond(tablet-portrait) {
+
+               transform: scale(1.6);
+
+            }
+
+        }
+
+    }
+
+}
+
+ .section-feature {
+
+    background-image: linear-gradient(to right bottom,
+
+                      rgba($color-primary-light, 0.8),
+
+                      rgba($color-primary-dark, 0.8)),
+
+                       url("../assets/hero.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    padding: 20rem 5rem;
+
+    transform: skewY(-7deg);
+
+    margin-top: -12vh;
+
+ 
+
+    // Select all direct child like this
+
+ 
+
+    & > * {
+
+        transform: skewY(7deg);
+
+    }
+
+ 
+
+    &__box {
+
+        background-color: $color-gray-light;
+
+        text-align: center;
+
+        padding: 1rem;
+
+        border-radius: 1rem;
+
+        justify-content: center;
+
+        transition: all .2s;
+
+ 
+
+        &:hover {
+
+            transform: translateY(-3px) scale(1.1);
+
+            box-shadow: 0 1rem 2rem rgba($color-black,0.2);
+
+        }
+
+    }
+
+ 
+
+    &__icon {
+
+        color: $color-primary;
+
+        width: 7rem;
+
+        height: 7rem;
+
+    }
+
+}
+
+ 
+
+.section-tours {
+
+    background-color: $color-gray-light;
+
+    margin-top: -8rem;
+
+    padding: 20rem;
+
+    perspective: 120rem; //always have to given in parent element
+
+ 
+
+    &__button {
+
+        text-align: center;
+
+    }
+
+}
+
+.card {
+
+    position: relative;
+
+    height: 52rem;
+
+ 
+
+    &__side {
+
+        height: 52rem;
+
+        position: absolute;
+
+        left:0;
+
+        top:0;
+
+        width: 100%;
+
+        transition: all .8s ease;
+
+        box-shadow: 0.5rem 1rem 2rem rgba($color-black,0.2);
+
+        -webkit-backface-visibility: hidden;
+
+        backface-visibility: hidden;
+
+ 
+
+        &--back {
+
+            transform: rotateY(-180deg);
+
+            &--b1 {
+
+                background-image: linear-gradient($color-orange-light, $color-orange-dark);
+
+            }
+
+            &--b2 {
+
+                background-image: linear-gradient($color-primary-light, $color-primary-dark);
+
+            }
+
+            &--b3 {
+
+                background-image: linear-gradient($color-blue-light, $color-blue-dark);
+
+            }
+
+        }
+
+    }
+
+ 
+
+    &__image {
+
+        background-size: cover;
+
+        background-position: center;
+
+        background-blend-mode: screen;
+
+        height: 23rem;
+
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+ 
+
+        &--p1 {
+
+            background-image: linear-gradient($color-orange-light, $color-orange-dark),
+
+                              url("../assets/nat-5.jpg");
+
+        }
+
+        &--p2 {
+
+             background-image: linear-gradient($color-primary-light, $color-primary-dark),
+
+                                url("../assets/nat-6.jpg");
+
+        }
+
+        &--p3 {
+
+            background-image: linear-gradient($color-blue-light, $color-blue-dark),
+
+                                url("../assets/nat-7.jpg");
+
+        }
+
+    }
+
+ 
+
+    &__heading {
+
+        text-transform: uppercase;
+
+        font-size: 1.8rem;
+
+        font-weight: 300;
+
+        position: absolute;
+
+        right: 2rem;
+
+        top: 13rem;
+
+        width: 75%;
+
+        color: $color-gray-light-1;
+
+        text-align: right;
+
+ 
+
+        &__span {
+
+        padding: 1rem 1.5rem;
+
+        -webkit-box-decoration-break: clone;
+
+        box-decoration-break: clone;
+
+        line-height: 2;
+
+ 
+
+        &--h1 {
+
+            background-image: linear-gradient(to right bottom,
+
+             rgba($color-orange-light, 0.85),
+
+              rgba($color-orange-dark, 0.85));
+
+        }
+
+ 
+
+        &--h2 {
+
+            background-image: linear-gradient(to right bottom,
+
+             rgba($color-primary-light, 0.85),
+
+              rgba($color-primary-dark, 0.85));
+
+        }
+
+ 
+
+        &--h3 {
+
+            background-image: linear-gradient(to right bottom,
+
+             rgba($color-blue-light, 0.85),
+
+              rgba($color-blue-dark, 0.85));
+
+        }
+
+ 
+
+        }
+
+ 
+
+    }
+
+ 
+
+    &__text {
+
+        padding: 2rem;
+
+        ul {
+
+            list-style: none;
+
+            width: 80%;
+
+            margin: 0 auto;
+
+            text-align: center;
+
+            font-size: 1.4rem;
+
+             li {
+
+                padding: 1rem;
+
+                &:not(:last-child) {
+
+                    border-bottom: 1px solid rgba($color-gray-light-1, 0.5);
+
+                }
+
+             }
+
+        }
+
+    }
+
+ 
+
+    &__action {
+
+        position: absolute;
+
+        top: 50%;
+
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        width: 90%;
+
+        text-align: center;
+
+ 
+
+        &__text {
+
+            color: $color-white;
+
+            margin-bottom: 6em;
+
+            text-align: center;
+
+        }
+
+ 
+
+        &__only {
+
+            text-transform: uppercase;
+
+            font-size: 1.4rem;
+
+        }
+
+ 
+
+        &__price {
+
+            font-size: 4rem;
+
+            font-weight: 100;
+
+        }
+
+ 
+
+    }
+
+ 
+
+    &:hover &__side--front{
+
+        transform: rotateY(180deg);
+
+    }
+
+ 
+
+    &:hover &__side--back{
+
+        transform: rotateY(0deg);
+
+    }
+
+}
+
+ 
+
+.section-people {
+
+    padding: 15rem  20rem;
+
+    position: relative;
+
+ 
+
+    &__button {
+
+        text-align: center;
+
+    }
+
+}
+
+ 
+
+.review-box {
+
+    width: 90%;
+
+    margin: 0 auto;
+
+    background-color: rgba($color-white, 0.5);
+
+    padding: 5rem;
+
+    padding-left: 8rem; //translateX(-3rem) as 3rem affected on left side we added that
+
+    box-shadow: 1rem 2rem 6rem rgba($color-black, 0.3);
+
+    transform: skewX(-12deg);
+
+    transition: all .2s;
+
+    -webkit-backface-visibility: hidden;
+
+    backface-visibility: hidden;
+
+    //when we apply skew, for all the elements it will apply including child
+
+    // In order to overcome that we will use direct child
+
+    // but in this case, 1 child already has transform property so it will restrict usage of another transform
+
+    // so separately giving for each child element transform
+
+    @include respond(tablet-portrait) {
+
+        transform: skewX(0);
+
+    }
+
+    &__figure {
+
+        width: 15rem;
+
+        height: 15rem;
+
+        float: left;
+
+        clip-path: circle(50%);
+
+        transform: translateX(-4rem) skewX(12deg);
+
+        shape-outside: circle(50%);
+
+        position: relative;
+
+ 
+
+        @include respond(tablet-portrait) {
+
+            transform: translateX(-4rem) skewX(0);
+
+        }
+
+ 
+
+        &--image {
+
+            height: 100%;
+
+            transform: translateX(-3rem) scale(1.4);
+
+        }
+
+ 
+
+        &--caption {
+
+            font-size: 1.8rem;
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, 20%);
+
+            color: $color-white;
+
+            text-align: center;
+
+            opacity: 0;
+
+        }
+
+    }
+
+ 
+
+    &:hover &__figure--caption {
+
+        opacity: 1;
+
+        transform: translate(-50%, -50%);
+
+    }
+
+ 
+
+    &:hover &__figure--image {
+
+        transform: translateX(-3rem) scale(1);
+
+        filter: blur(3px) brightness(80%);
+
+    }
+
+ 
+
+    &__text {
+
+        transform: skewX(12deg);
+
+        @include respond(tablet-portrait) {
+
+            transform: skewX(0);
+
+        }
+
+    }
+
+}
+
+.video-container{
+
+ 
+
+    width: 100%;
+
+    height: 100%;
+
+    position: absolute;
+
+    top:0;
+
+    left:0;
+
+    overflow:hidden;
+
+    z-index: -1;
+
+    opacity: 0.2;
+
+ 
+
+    &__bg-video {
+
+        // works same way as background-size: cover
+
+        // specifying height and width is important, otherwise full height and width of video is not shown.
+
+        object-fit: cover;
+
+        height: 100%;
+
+        width: 100%;
+
+    }
+
+}
+
+ 
+
+.section-booking {
+
+    padding: 15rem;
+
+    background-image: linear-gradient(to right bottom,
+
+    rgba($color-primary-light, 0.85),
+
+    rgba($color-primary-dark, 0.85));
+
+}
+
+ 
+
+.booking-form {
+
+    background-image: linear-gradient(
+
+    105deg,
+
+    rgba($color-white, 0.8) 0%,
+
+    rgba($color-white, 0.8) 50%,
+
+    transparent 50%),
+
+    url("../assets/nat-2-large.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+ 
+
+    @include respond(tablet-landscape) {
+
+        background-image: linear-gradient(
+
+            105deg,
+
+            rgba($color-white, 0.8) 0%,
+
+            rgba($color-white, 0.8) 60%,
+
+            transparent 60%),
+
+            url("../assets/nat-2-large.jpg");
+
+    }
+
+ 
+
+    @include respond(tablet-portrait) {
+
+        background-image: linear-gradient(
+
+        105deg,
+
+        rgba($color-white, 0.8) 0%,
+
+        rgba($color-white, 0.8) 100%,
+
+        transparent 100%),
+
+        url("../assets/nat-2-large.jpg");
+
+        }
+
+}
+
+ 
+
+.form {
+
+    width: 50%;
+
+    padding: 3rem;
+
+    @include respond(tablet-portrait) {
+
+        width: 100%;
+
+    }
+
+    &__group {
+
+ 
+
+        &:not(:last-child) {
+
+            margin-bottom: 2.5rem;
+
+        }
+
+        &__label {
+
+            margin: 1rem 1.5rem;
+
+            color: $color-gray;
+
+            font-size: 1.2rem;
+
+            font-weight: 600;
+
+            display: block;
+
+            transition: all .2s;
+
+        }
+
+        &__input {
+
+            font-size: 1.5rem;
+
+            font-family:inherit;
+
+            color: $color-black;
+
+            width: 100%;
+
+            display: block;
+
+            padding: 1rem 2rem;
+
+            border: transparent;
+
+            border-bottom: 3px solid transparent;
+
+ 
+
+            &:focus {
+
+                outline: none;
+
+                border: transparent;
+
+                box-shadow: 0 1rem 3rem rgba($color-black, 0.2);
+
+                border-bottom: 3px solid $color-primary;
+
+            }
+
+            &:focus:invalid {
+
+                border-bottom: 3px solid $color-orange-dark ;
+
+            }
+
+            // To style placeholder
+
+            &::-webkit-input-placeholder {
+
+                color: $color-gray;
+
+            }
+
+        }
+
+        &__input:placeholder-shown + &__label {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(-4rem);
+
+        }
+
+    }
+
+}
+
+ 
+
+.radio {
+
+    &__group {
+
+        display:inline-block;
+
+ 
+
+        :not(:first-child) {
+
+            margin-left: 1rem;
+
+        }
+
+        &__input {
+
+            display: none;
+
+        }
+
+ 
+
+        &__label {
+
+            font-size: 1.6rem;
+
+            margin-left: 0.6rem;
+
+            cursor: pointer;
+
+ 
+
+            .customised-button {
+
+                display: inline-block;
+
+                width:2.5rem;
+
+                height:2.5rem;
+
+                border:4px solid $color-primary;
+
+                border-radius: 50%;
+
+                position: relative;
+
+                top: 0.7rem;
+
+                transition: opacity .2s;
+
+ 
+
+            &::after {
+
+                content: '';
+
+                width: 1rem;
+
+                height: 1rem;
+
+                border-radius: 50%;
+
+                position:absolute;
+
+                top: 50%;
+
+                left: 50%;
+
+                transform: translate(-50%, -50%);
+
+                background-color: $color-primary;
+
+                opacity: 0;
+
+            }
+
+        }
+
+        }
+
+ 
+
+        &__input:checked + &__label .customised-button:after {
+
+            opacity: 1;
+
+        }
+
+    }
+
+}
+
+ 
+
+.footer {
+
+    background-color: $color-gray-3;
+
+    padding: 10rem;
+
+ 
+
+    &__image-box {
+
+        text-align: center;
+
+        margin-bottom: 5rem;
+
+    }
+
+ 
+
+    &__image {
+
+        width: 15rem;
+
+        height: 15rem;
+
+    }
+
+ 
+
+    &__list {
+
+        display: inline-block;
+
+        border-top: 2px solid $color-gray;
+
+        list-style: none;
+
+        padding-top: 2rem;
+
+        @include respond(tablet-portrait) {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+    }
+
+ 
+
+    &__items {
+
+        display: inline-block;
+
+        &:not(:last-child) {
+
+            margin-right: 2rem;
+
+        }
+
+    }
+
+ 
+
+    &__link {
+
+        transition: all .2s;
+
+        &:link, &:visited {
+
+            text-decoration: none;
+
+            font-size: 1.2rem;
+
+            color: $color-gray-light;
+
+            text-transform: uppercase;
+
+            display: inline-block ;
+
+        }
+
+ 
+
+        &:hover {
+
+            transform: skewY(5deg) scale(1.3);
+
+            background-color: $color-black;
+
+            color: $color-primary;
+
+            box-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.3);
+
+        }
+
+ 
+
+    }
+
+ 
+
+    &__copyright-text {
+
+        border-top: 2px solid $color-gray;
+
+        font-size: 1.2rem;
+
+        padding-top: 2rem;
+
+        text-align: justify;
+
+        width: 80%;
+
+        float: right;
+
+        @include respond(tablet-portrait) {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+    }
+
+}
+
+ 
+
+.navigation {
+
+    &__checkbox {
+
+         display: none;
+
+    }
+
+ 
+
+    &__label {
+
+        width: 7rem;
+
+        height: 7rem;
+
+        position: fixed;
+
+        top: 7rem;
+
+        right: 7rem;
+
+        border-radius: 50%;
+
+        background-color: $color-white;
+
+        z-index: 300;
+
+        text-align: center;
+
+        @include respond(tablet-portrait) {
+
+            top: 4rem;
+
+            right: 4rem;
+
+        }
+
+        @include respond(phone) {
+
+            top: 3rem;
+
+            right: 3rem;
+
+        }
+
+    }
+
+ 
+
+    &__background {
+
+        width: 6.5rem;
+
+        height: 6.5rem;
+
+        border-radius: 50%;
+
+        position: fixed;
+
+        top: 7.2rem;
+
+        right: 7.2rem;
+
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+
+        z-index: 100;
+
+        // transition: all .2s;
+
+        @include respond(tablet-portrait) {
+
+            top: 4.2rem;
+
+            right: 4.2rem;
+
+        }
+
+        @include respond(phone) {
+
+            top: 3.2rem;
+
+            right: 3.2rem;
+
+        }
+
+    }
+
+ 
+
+    &__nav {
+
+        opacity: 0;
+
+        position: relative;
+
+        top:0;
+
+        left:0;
+
+        width: 0;
+
+        transition: all .2s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+        // we can also apply custom easing functions using cubic-bazier.com and easing functions cheatsheet.
+
+    }
+
+ 
+
+    &__list {
+
+        list-style: none;
+
+        position: fixed;
+
+        top: 50%;
+
+        left: 50%;
+
+        text-align: center;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 150;
+
+    }
+
+ 
+
+    &__item {
+
+      margin: 1rem;
+
+    }
+
+ 
+
+    &__link {
+
+        &:link,
+
+        &:visited {
+
+        text-decoration: none;
+
+        text-transform: uppercase;
+
+        color: $color-white;
+
+        font-size: 2.5rem;
+
+        font-weight: 100;
+
+        padding: 1.5rem 3rem;
+
+        display: inline-block;
+
+        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+
+        background-size: 230%;
+
+        transition: all .2s;
+
+        }
+
+ 
+
+        &:hover, &:active {
+
+            background-position: 100%;
+
+            color: $color-gray;
+
+            transform: translateX(2rem);
+
+        }
+
+        &__number {
+
+             margin-right: 1.5rem;
+
+        }
+
+    }
+
+ 
+
+    &__checkbox:checked ~ &__background {
+
+        transform: scale(50);
+
+    }
+
+ 
+
+    &__checkbox:checked  ~ &__nav {
+
+        opacity: 1;
+
+        width: 100%;
+
+    }
+
+ 
+
+    &__icon {
+
+        position: relative;
+
+        margin-top: 3.3rem;
+
+        transition: all .2s;
+
+        &,
+
+        &:after,
+
+        &:before {
+
+        display: inline-block;
+
+        width:3.2rem;
+
+        height:.3rem;
+
+        background-color: $color-gray;
+
+        transition: all .2s;
+
+        }
+
+ 
+
+        &:after,
+
+        &:before {
+
+            content: '';
+
+            position: absolute;
+
+            left:0;
+
+            transition: all .2s;
+
+        }
+
+        &:after {
+
+            top:-0.8rem;
+
+        }
+
+        &::before {
+
+            top:0.8rem;
+
+        }
+
+    }
+
+ 
+
+    &__label:hover &__icon:before {
+
+        top: -1rem;
+
+    }
+
+ 
+
+    &__label:hover &__icon:after {
+
+        top: 1rem;
+
+    }
+
+ 
+
+    &__checkbox:checked + &__label &__icon {
+
+        background-color: transparent;
+
+    }
+
+ 
+
+    
+
+    &__checkbox:checked + &__label &__icon:before {
+
+        top:0;
+
+        transform: rotate(-135deg);
+
+        // inorder to have full rotation like effect 180-45 = 135
+
+    }
+
+ 
+
+    &__checkbox:checked + &__label &__icon:after {
+
+        top:0;
+
+        transform: rotate(135deg);
+
+    }
+
+}
+
+ 
+
+.popup {
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba($color-black, 0.8);
+
+    position: fixed;
+
+    top:0;
+
+    left:0;
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: all .2s;
+
+ 
+
+    // @supports - In order to check whether modern css property supported in a browser and only when 
+
+    // the browser supports that particular css, then use that property
+
+ 
+
+    @supports (-webkit-backdrop-filter: 10px)  or (backdrop-filter: blur(10px)) {
+
+        background-color: rgba($color-black, 0.3);
+
+        -webkit-backdrop-filter: 10px;
+
+        backdrop-filter: blur(10px);
+
+    }
+
+ 
+
+    &:target {
+
+        opacity: 1;
+
+        visibility: visible;
+
+    }
+
+ 
+
+     &:target &__content{
+
+        transform: translate(-50%, -50%) scale(1);
+
+    }
+
+ 
+
+    &__content {
+
+        width: 75%;
+
+        background-color: $color-white;
+
+        padding: 5rem;
+
+        position: absolute;
+
+        top: 50%;
+
+        left: 50%;
+
+        transform: translate(-50%, -50%) scale(.5);
+
+        display: table;
+
+        opacity: 1;
+
+        transition: all .2s;
+
+    }
+
+ 
+
+    &__imagebox {
+
+        width: 33.333333%;
+
+        // float: left;
+
+        display: table-cell;
+
+    }
+
+ 
+
+    &__image {
+
+        width: 100%;
+
+    }
+
+ 
+
+    &__text-box {
+
+        width: 66.666666%;
+
+        // float: left;
+
+        display: table-cell;
+
+        vertical-align: middle;
+
+        padding-left: 4rem;
+
+    }
+
+ 
+
+    &__text {
+
+        font-size: 1.4rem;
+
+        column-count: 2;
+
+        column-gap: 4rem;
+
+        column-rule: 1px solid rgba($color-gray, 0.2);
+
+        // hyphens: auto; not working for me
+
+        text-align: justify;
+
+    }
+
+ 
+
+    &__close {
+
+        &:link, &:visited {
+
+            position: absolute;
+
+            top: 2.5rem;
+
+            right: 2.5rem;
+
+            font-size: 2.5rem;
+
+            color: $color-gray;
+
+            text-decoration: none;
+
+            transition: all .2s;
+
+        }
+
+        &:hover {
+
+            color: $color-primary;
+
+        }
+
+    }
+
+}
+
+ 
+
+ .u-center-text {
+
+     text-align: center;
+
+ }
+
+ 
+
+ .u-margin-top-8 {
+
+     margin-top: 4rem;
+
+ }
+
+ 
+
+ .u-margin-top-huge {
+
+    margin-top: 8rem;
+
+ }
+
+ 
+
+ @keyframes movesInLeft {
+
+    0% {
+
+       opacity: 0;
+
+       transform: translateX(-10rem);
+
+    }
+
+    80% {
+
+        transform:translateX(1.5rem);
+
+    }
+
+    100% {
+
+       opacity: 1;
+
+       transform: translate(0);
+
+    }
+
+}
+
+ 
+
+@keyframes moveInRight {
+
+    0% {
+
+       opacity: 0;
+
+       transform:translateX(10rem);
+
+    }
+
+    80% {
+
+       transform: translateX(-1.5rem);
+
+    }
+
+    100% {
+
+       opacity:1;
+
+       transform:translate(0)
+
+    }
+
+}
+
+ 
+
+@keyframes moveInBottom {
+
+    0% {
+
+       opacity: 0;
+
+       transform:translateY(5rem);
+
+    }
+
+ 
+
+    100% {
+
+       opacity:1;
+
+       transform:translate(0)
+
+    }
+
+}
+
+ 

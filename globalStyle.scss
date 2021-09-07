@@ -1,0 +1,125 @@
+// 16px = 1em
+
+// 1px = 1/16em
+
+// 600px = (1/16)*600em = 37.5em
+
+@mixin respond($device) {
+
+    @if $device == phone {
+
+        @media only screen and (max-width: 37.5em) {@content;} //600px
+
+     }
+
+    @if $device == tablet-portrait {
+
+        @media only screen and (max-width: 56.25em) {@content;} //900px
+
+     }
+
+     @if $device == tablet-landscape {
+
+        @media only screen and (max-width: 75em) {@content;} //1200px
+
+     }
+
+     @if $device == big-desktop {
+
+        @media only screen and (min-width: 112.5em) {@content;} //1800+
+
+     }
+
+}
+
+ 
+
+$color-primary: #55c59a;
+
+ 
+
+*,
+
+*::after,
+
+*::before {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+ 
+
+html {
+
+    // 16px = 100%
+
+    // 1px = 100/16 %
+
+    // 10px = ( 100/16 ) * 10 %
+
+    font-size: 62.5%; //10px
+
+    @include respond(tablet-landscape) { //9px
+
+        font-size: 56.25%;
+
+    }
+
+    @include respond(tablet-portrait) { //8px
+
+        font-size: 50%
+
+    }
+
+    @include respond(phone) { //4px
+
+        font-size: 25%
+
+    }
+
+    @include respond(big-desktop) { //12px
+
+        font-size: 75%
+
+    }
+
+}
+
+ 
+
+body {
+
+    font-family: sans-serif;
+
+    line-height: 1.7;
+
+    font-weight: 400;
+
+    color: #777;
+
+    padding: 3rem;
+
+ 
+
+   @include respond(tablet-portrait) {
+
+       padding: 0;  
+
+   }
+
+}
+
+ 
+
+::selection {
+
+    background-color: $color-primary;
+
+    color: white;
+
+}
